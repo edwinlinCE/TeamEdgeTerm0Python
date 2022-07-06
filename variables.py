@@ -47,10 +47,10 @@ print(f"funFact datatype: {type(funFact)}")
 line_1 = "Happy Birthday to you!"
 line_2 = f"Happy Birthday Dear {name}"
 
-print(line_1)
-print(line_1)
-print(line_2)
-print(line_1)
+print(f"{line_1}")
+print(f"{line_1}")
+print(f"{line_2}")
+print(f"{line_1}")
 
 
 
