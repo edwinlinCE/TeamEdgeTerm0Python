@@ -3,6 +3,9 @@
 # Day 2 Challenges
 # -------------------------------------------- 
 
+from math import degrees
+
+
 message = "Welcome to Day 2.\nToday we are learning about conditionals.\nLet's practice writing some conditionals of our own!"
 print(message)
 # -------------------------------------------- 
@@ -12,8 +15,11 @@ print("------------------- Challenge 1 -------------------")
    # Prompt the user to enter their age.
    # Write conditional statements that print out whether you can drive in your city. 
 
-
-
+user_age = input("Enter your age: ")
+if(int(user_age) >= 16):
+   print("You are old enough to drive!")
+else:
+   print("You are not old enough to drive!")
 
 
 
@@ -32,9 +38,17 @@ print("------------------- Challenge 2 -------------------")
    # Write conditional statements that checks which is the highest and prints the highest score. 
    # Hint: Create three variables and assign them random scores. 
 
+#assuming the scores cannot be equal to each other
+score_1 = 20
+score_2 = 5
+score_3 = 50
 
-
-
+if score_1 > score_2 and score_1 > score_3:
+   print(score_1)
+elif score_2 > score_1 and score_2 > score_3:
+   print(score_2)
+else:
+   print(score_3)
 
 
 
@@ -60,6 +74,13 @@ print("------------------- Challenge 3 -------------------")
 
 # Here's a variable to get you started:
 weather = "rainy"
+degrees = 3020
+if weather.lower() == "rainy":
+   print("Bring an umbrella")
+elif weather.lower() == "sunny":
+   print("Wear a hat and sunglasses")
+elif weather.lower() == "snowing":
+   print("Wear gloves and a scarf")
 
 
 
@@ -88,6 +109,18 @@ weather = "rainy"
 
 
 
+if weather.lower() == "rainy" and degrees >= 60:
+   print("You might want to bring your umbrella and wear a light jacket")
+elif weather.lower() == "rainy" and degrees <= 30:
+   print("You might want to bring an umbrella and wear warm clothing")
+elif weather.lower() == "sunny" and degrees >= 60:
+   print("You might want to bring an umbrella and wear a short sleeved shirt")
+elif weather.lower() == "sunny" and degrees <= 30:
+   print("You might want to wear a long sleeved shirt")
+elif weather.lower() == "snowing" and degrees >= 60:
+   print("You might want to wear a hoodie.")
+elif weather.lower() == "snowing" and degrees <= 30:
+   print("You might want to wear a puffy jacket")
 
 
 
@@ -108,9 +141,17 @@ print("------------------- Challenge 4 -------------------")
 
 
 
+day_of_week = input("Enter the day of the week: ")
+weekdays = dict([ (1,"Monday"),
+                  (2,"Tuesday"),
+                  (3,"Wednesday"),
+                  (4,"Thursday"),  
+                  (5,"Friday"),
+                  (6,"Saturday"),
+                  (7,"Sunday")
 
-
-
+])
+print(weekdays.get(int(day_of_week)))
 
 
 
@@ -133,8 +174,14 @@ print("------------------- Challenge 5 -------------------")
 # Your challenge is to translate the steps above into conditionals which will evaluate if the 
 # year stored in a variable is/was a leap year.
 
-
-
-
-
-
+year = 2024
+if year % 4 == 0:
+   if year % 100 == 0:
+      if year % 400 == 0:
+         print(f"{year} is a leap year!")
+      else:
+         print(f"{year} is not a leap year!")
+   else:
+      print(f"{year} is a leap year!")
+else:
+   print(f"{year} is not a leap year!")
