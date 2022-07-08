@@ -19,29 +19,42 @@ print("------------------- Challenge 1 -------------------")
 
 # **** Challenge 1: Problem 1 ****
 # Write a function called print_message() that prints any message you want.
-
+def print_message():
+	print("Hello world!")
 
 # **** Challenge 1: Problem 2 ****
 # Write a function called print_five_messages() that calls print_message() five times.
-
+def print_five_messages():
+	for i in range(0,5):
+		print_message()
 
 # **** Challenge 1: Problem 3 ****
 # Write a function called get_user_input() that asks the user if they'd like to print your message
 # once or five times. Then call one of the two functions above based on what the user decides.
-
+def get_user_input():
+	user_input = input("Would you like to print the message once or five times? (1 for once, 5 for five times): ")
+	if(int(user_input) == 1):
+		print_message()
+	elif(int(user_input) == 5):
+		print_five_messages()
 
 # **** Challenge 1: Problem 4 ****
 # Write a function called print_greeting() that prints a greeting message to the user.
-
+def print_greeting():
+	print("Greetings user!")
 
 # **** Challenge 1: Problem 5 ****
 # Write a function called print_closing() that prints a goodbye message to the user.
-
+def print_closing():
+	print("Goodbye user!")
 
 # **** Challenge 1: Problem 6 ****
 # Write a function called run() that greets the user, asks them for input, and sends a goodbye message.
 # Remember! Use the functions that you've already made. Don't hardcode anything!
-
+def run():
+	print_greeting()
+	get_user_input()
+	print_closing()
 
 
 # -------------------------------------------- 
@@ -65,9 +78,14 @@ print("------------------- Challenge 2 -------------------")
 
 # -------------------------------------------- 
 
+def sum_double(num1, num2):
+	if num1 == num2:
+		print((num1+num2)*2)
+	else:
+		print(num1 + num2)
 
-
-
+sum_double(1,2)
+sum_double(2,2)
 
 
 
@@ -86,10 +104,12 @@ print("------------------- Challenge 2 -------------------")
 
 # -------------------------------------------- 
 
-
-
-
-
+def makes_10(num1,num2):
+	if num1 == 10 or num2 == 10 or (num1 + num2) == 10:
+		return True
+	return False
+print(makes_10(1,9))
+print(makes_10(9,9))
 
 # Make sure to test your code! Write a few function calls to make sure your code works!
 
@@ -111,7 +131,17 @@ print("------------------- Challenge 2 -------------------")
 
 # -------------------------------------------- 
 
-
+def alarm_clock(num, tof):
+	if(tof == True and num >= 1 and num <= 5):
+		return "10:00"
+	elif(tof == True and num == 0 or num == 6):
+		return "off"
+	elif(tof == False and num == 0 or num == 6):
+		return "10:00"
+	return "7:00"
+print(alarm_clock(1, False)) 
+print(alarm_clock(6, True)) 
+print(alarm_clock(0, False)) 	
 
 
 
@@ -136,7 +166,12 @@ print("------------------- Challenge 2 -------------------")
 
 # -------------------------------------------- 
 
-
+def ticket(speed):
+	if speed >= 81:
+		return 2
+	elif speed >= 61 and speed <=80:
+		return 1
+	return 0
 
 
 
@@ -144,3 +179,6 @@ print("------------------- Challenge 2 -------------------")
 
 
 # Make sure to test your code! Write a few function calls to make sure your code works!
+print(ticket(60))
+print(ticket(72))
+print(ticket(82))
