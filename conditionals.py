@@ -174,7 +174,7 @@ print("------------------- Challenge 5 -------------------")
 # Your challenge is to translate the steps above into conditionals which will evaluate if the 
 # year stored in a variable is/was a leap year.
 
-year = 2024
+year = int(input("Enter Year: "))
 if year % 4 == 0:
    if year % 100 == 0:
       if year % 400 == 0:
