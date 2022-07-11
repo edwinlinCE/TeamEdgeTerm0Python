@@ -122,8 +122,21 @@ def divide_numbers(*args):
 
 # -------------------------------------------- 
 
+question = input("Do you want to [a]dd ,[s]ubtract, [m]ultiply, or [d]ivde: ")
+num_1 = input("Number 1: ")
+num_2 = input("Number 2: ")
 
+num_1_int = int(num_1)
+num_2_int = int(num_2)
 
+if question == 'a':
+	print(add_numbers(num_1_int,num_2_int))
+elif question == 's':
+	print(sub_numbers(num_1_int,num_2_int))
+elif question == 'm':
+	print(multiply_numbers(num_1_int,num_2_int))
+elif question == 'd':
+	print(divide_numbers(num_1_int,num_2_int))
 
 
 
@@ -160,6 +173,11 @@ def divide_numbers(*args):
 		# Test your code!
   
 # -------------------------------------------- 
+
+def milesToKilometer(miles):
+	return miles*1.6
+
+print(milesToKilometer(20))
 
 
 

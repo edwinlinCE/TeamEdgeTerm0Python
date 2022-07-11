@@ -30,7 +30,20 @@
 	#5. the total including tax and tip
 
 # -------------------------------------------- 
-
+menu = {
+  #Meals
+  "Big Mac": 4,
+  "Spicy Chicken Sandwhich": 5,
+  "10 Chicken Nuggets": 5,
+  #Drinks
+  "Hi-C": 2,
+  "Pepsi": 3,
+  "Coke": 3,
+  #Dessert
+  "McFlurry": 3,
+  "Vanilla Cone": 1,
+  "Hot Fudge Sundae": 2,
+}
 
 # -------------------------------------------- 
 
@@ -41,7 +54,8 @@
 # Remember: Your user should be able to order at least 3 items (a drink, meal, and dessert item). 
 
 # --------------------------------------------
-
+list = list(menu.items())
+print(list)
 
 
 # -------------------------------------------- 
