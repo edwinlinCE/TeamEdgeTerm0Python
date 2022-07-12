@@ -30,20 +30,6 @@
 	#5. the total including tax and tip
 
 # -------------------------------------------- 
-menu = {
-  #Meals
-  "Big Mac": 4,
-  "Spicy Chicken Sandwhich": 5,
-  "10 Chicken Nuggets": 5,
-  #Drinks
-  "Hi-C": 2,
-  "Pepsi": 3,
-  "Coke": 3,
-  #Dessert
-  "McFlurry": 3,
-  "Vanilla Cone": 1,
-  "Hot Fudge Sundae": 2,
-}
 
 # -------------------------------------------- 
 
@@ -54,8 +40,11 @@ menu = {
 # Remember: Your user should be able to order at least 3 items (a drink, meal, and dessert item). 
 
 # --------------------------------------------
-list = list(menu.items())
-print(list)
+
+
+from re import M
+
+
 
 
 # -------------------------------------------- 
@@ -67,10 +56,22 @@ print(list)
 # - Print each item available and it's cost. You should have at least 3 items available (a drink, meal, and dessert item). 
 
 # --------------------------------------------
-
-
-
-
+def display_menu():
+  #Meals
+  print("******Meals******")
+  print("[0] Big Mac: $4")
+  print("[1] Spicy Chicken Sandwich: $5")
+  print("[2] 10 Chicken Nuggets: $5")
+  #Drinks
+  print("******Drinks******")
+  print("[3] Hi-C: $2")
+  print("[4] Pepsi: $3")
+  print("[5] Coke: $3")
+  #Dessert
+  print("******Desserts******")
+  print("[6] McFlurry: $3")
+  print("[7] Vanilla Cone: $1")
+  print("[8] Hot Fudge Sundae: $2")
 
 
 # -------------------------------------------- 
@@ -85,8 +86,65 @@ print(list)
 # Remember! Functions are meant to be reusable, so write a function that will work when called repeatedly!
 
 # --------------------------------------------
+def take_order():
+	global meal
+	meal = None
+	global meal_cost
+	meal_cost = None
+	meal_num = None
+	while meal_num is not 0 or not 1 or not 2:
+		meal = input("Choose your meal: ")
+		meal_num = int(meal)
+	if meal_num == 0:
+		meal_cost = 4
+		meal = "Big Mac"
+	elif meal_num == 1:
+		meal_cost = 5
+		meal = "Spicy Chicken Sandwich"
+	elif meal_num == 2:
+		meal_cost = 5
+		meal = "10 Chicken Nuggets"
 
-
+	global drink
+	drink = None
+	global drink_cost
+	drink_cost = None
+	drink_num = None
+	while drink_num is not 3 or not 4 or not 5:
+		drink = input("Choose your drink: ")
+		drink_num = int(drink)
+	if drink_num == 3:
+		drink_cost = 2
+		drink = "Hi-C"
+	elif drink_num == 4:
+		drink_cost = 3
+		drink = "Pepsi"
+	elif drink_num == 5:
+		drink_cost = 3
+		drink = "Coke"
+	#312
+	
+	global dessert
+	dessert = None
+	global dessert_cost
+	dessert_cost = None
+	dessert_num = None
+	while dessert_num is not 6 or not 7 or not 8:
+		dessert = input("Choose your dessert: ")
+		dessert_num = int(dessert)
+	if dessert_num == 6:
+		dessert_cost = 3
+		dessert = "McFlurry"
+	elif dessert_num == 7:
+		dessert_cost = 1
+		dessert = "Vanilla Cone"
+	elif dessert_num == 8:
+		dessert_cost = 2
+		dessert = "Hot Fudge Sundae"
+	
+	total = meal_cost + drink_cost + dessert_cost
+	return total
+		
 
 
 
@@ -111,13 +169,11 @@ print(list)
 
 # -------------------------------------------- 
 
-
-
-
-
-
-
-
+def full_cost():
+	total = take_order()
+	tax = total * .10
+	full_total = tax + total + tip
+	return full_total
 
 
 
@@ -138,7 +194,17 @@ print(list)
 
 # -------------------------------------------- 
 
-
+def receipt(meal, drink, dessert, meal_cost, drink_cost, dessert_cost, total_cost,tip):
+	print("RECEIPT")
+	print("*********************")
+	print(f"{meal} ${meal_cost}")
+	print(f"{drink} ${drink_cost}")
+	print(f"{dessert} ${dessert_cost}")
+	print(f"Cost: {total_cost}")
+	print(f"Tip: {tip}")
+	print(f"Tax {total_cost*.10}")
+	print(f"Total: {total_cost+tip+(total_cost*.10)}")
+	print("*********************")
 
 
 # -------------------------------------------- 
@@ -149,9 +215,17 @@ print(list)
 
 # --------------------------------------------
 
+display_menu()
+total = take_order()
 
+get_tip = input("Tip: ")
+tip = int(get_tip)
 
+tax = total * .10
 
+full_total = total + tip + tax
+
+receipt(meal,drink,dessert,meal_cost,drink_cost,dessert_cost,total,tip)
 
 
 
