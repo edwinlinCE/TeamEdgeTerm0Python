@@ -15,7 +15,7 @@
  #      asking, "Iknow you are a _____, but what am I?"
  # 
  # ***************************************************************/
-
+from random import randint
 print("------------------- CHALLENGE 1 : IN YOUR PRIME -------------------")
 
 #Here is a humble while loop in action. We need a variable to hold the counter value.
@@ -68,9 +68,10 @@ print("------------------- CHALLENGE 3 : BUGGIN   -------------------")
 #-->TODO: Make me count  2, 4, 6,..., 50
 
 def even_numbers_to_fifty():
-    num = 50
-    while num < 50:
+    num = 2
+    while num <= 50:
         print("number: " + str(num))
+        num+=2
 
 even_numbers_to_fifty()
 
@@ -118,9 +119,11 @@ print("------------------- CHALLENGE 4 : MATH QUIZ   -------------------")
 is_correct = False
 
 while is_correct:
+  random_1 = randint(0,100)
+  random_2 = randint(0,100)
   rand1 = input("Enter a number between 0 and 100: ")
   rand2 = input("Enter another number between 0 and 100: ")
-  if int(rand1) == 69 or int(rand2) == 69:
+  if random_1 == int(rand1) and random_2 == int(rand2):
     break
 
 
