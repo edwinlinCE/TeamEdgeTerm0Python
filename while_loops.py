@@ -20,7 +20,7 @@ print("------------------- CHALLENGE 1 : IN YOUR PRIME -------------------")
 
 #Here is a humble while loop in action. We need a variable to hold the counter value.
 num = 0
-while num <= 10:
+while num <= 100:
     print("example counter--> " + str(num))
     num += 1
 
@@ -42,7 +42,11 @@ def test_prime(n):
 
 #-->TODO: Declare a while loop that prints all the prime numbers between 0 and 100, use test_prime() helper function
 
-
+x = 1
+while x <= 100:
+  if test_prime(x):
+    print(x)
+  x+=1
 
 print("------------------- CHALLENGE 2 : FOUND   -------------------")
 
