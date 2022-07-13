@@ -142,6 +142,7 @@ def response(response):
     print(f"I know you are a {response}, but what am I?")
     return response
 
+print("I know you are a meanie, but what am I?")
 while keep_asking:
    temp = response(prompt_user())
    if temp == "loser":
