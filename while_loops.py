@@ -50,8 +50,11 @@ print("------------------- CHALLENGE 2 : FOUND   -------------------")
 items = ["pencil" , "eraser" , "mirror" , "comb" , "spoon" , "key" , "earrings" ,"cat food" , "magazine"]
 
 #-->TODO: Use a while loop to search the contents of a list for the key! If it exists, print "found the key!"
-
-
+x = 0
+while(x < len(items)):
+  if items[x] == "key":
+    print("found the key!")
+  x+=1
 
 print("------------------- CHALLENGE 3 : BUGGIN   -------------------")
 
@@ -92,8 +95,12 @@ def pattern():
         my_list.append(index)
         print(my_list)
         index += 1
-
-pattern()
+    index -=2
+    while index >= 0:
+      my_list.pop()
+      print(my_list)
+      index -= 1
+pattern()      
 
 
 print("------------------- CHALLENGE 4 : MATH QUIZ   -------------------")
@@ -106,6 +113,12 @@ print("------------------- CHALLENGE 4 : MATH QUIZ   -------------------")
 
 is_correct = False
 
+while is_correct:
+  rand1 = input("Enter a number between 0 and 100: ")
+  rand2 = input("Enter another number between 0 and 100: ")
+  if int(rand1) == 69 or int(rand2) == 69:
+    break
+
 
 print("------------------- CHALLENGE 5 : WHAT AM I?   -------------------")
 
@@ -113,18 +126,20 @@ print("------------------- CHALLENGE 5 : WHAT AM I?   -------------------")
 #         You are given two starter functions and a loop to get started! 
 #         Notice how one function calls the other and uses the returned value as the input. This is called Recursion! 
 
-keep_asking = False
+keep_asking = True
 
 def prompt_user():
-    pass
+    return input("")
 
 def response(response):
-    pass
+    print(f"I know you are a {response}, but what am I?")
+    return response
 
 while keep_asking:
-    #response(prompt_user())
-    pass
-
+   temp = response(prompt_user())
+   if temp == "loser":
+    print("Hey that's mean :(")
+    break
 #-->TODO: Challenge! write a secret word to break out of the loop!
 
 
