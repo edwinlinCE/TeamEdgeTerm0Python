@@ -25,8 +25,9 @@ for x in range(11):
    
 
 #-->TODO: Write a loop that prints a happy birthday message for every year you have been alive.
-
-
+age = 17
+for i in range(0,age):
+    print(f"Happy Birthday! You are now {i} years old")
 
 print("------------------- CHALLENGE 2 : ITERATOR ----------------------")
 
@@ -38,11 +39,11 @@ for x in colors:
     print("The color is: " + x)
 
 #-->TODO: Declare a list with at least 5 animals. You provide the animals.
-animals = []
+animals = ["Dog", "Cat", "Giraffe", "Elepahnt", "Fly"]
 
 #-->TODO: Print all the animals in the array with a for loop. 
-
-
+for i in range(0,len(animals)):
+    print(animals[i])
 
 print("------------------- CHALLENGE 3 : EVEN COUNTDOWN ------------------")
 
@@ -57,10 +58,13 @@ else:
     print(str(random) + " is odd!")
 
 #-->TODO: Write a function that counts BACKWARDS from 100 and prints only even numbers
-
-
+for i in range(100, -1, -2):
+    print(i)
 #-->TODO: Write a function that counts BACKWARDS from the given random number and prints only odd numbers
-
+print("*****************************")
+for i in range(random, -1, -1):
+    if not i % 2 == 0:
+        print(i)
 
 print("------------------- CHALLENGE 4 : Finder ------------------")
 
@@ -73,13 +77,20 @@ else:
 
 #-->TODO Declare a list of any strings you  want: cities, friends, movies, etc.
 
-
+cities = ["London", "Paris", "New York", "Dubai", "Tokyo"]
 
 #-->TODO Write function to prompt the user to "Guess" if an element is present in your list. Store their response in a variable. 
 #   --> If their guess is in your list, print CONGRATULATIONS!
+def guess(string):
+    if string in cities:
+        print("Congratulations!")
+    else:
+        print("Try again")
 
 
 #-->TODO Call your function.
+guess_city = input("Guess city: ")
+guess(guess_city)
 
 
 
@@ -98,6 +109,19 @@ for color in colors:
 
 
 #-->TODO Write a function that prints every letter in a sentence that a user enters.
-
+word = input("Write a sentence: ")
+def print_letter(string):
+    string_r = string.replace(" ", "")
+    for i in range(0,1):
+        print(string)
+        for i in range(0,len(string_r)):
+            print(f"- {string_r[i]}")
+print_letter(word)
 
 #-->CHALLENGE: Let the user know which word is the shortest one!
+def short_word(list):
+    lowest = list[0]
+    for i in range(1,len(list)):
+        if len(list[i]) < len(list[0]):
+            lowest = list[i]
+        return lowest
