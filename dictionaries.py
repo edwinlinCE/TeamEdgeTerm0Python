@@ -40,8 +40,11 @@ print(dictionary)
 
 ##################################  MY dictionary ########################### #/
 
-
-
+new_dict = { "string": "hello",
+             "boolean": True,
+             "number": 10,
+             "list": ["Hello", "World"]
+}
 
 
 
@@ -52,24 +55,43 @@ print(dictionary)
 print("------------------- CHALLENGE 2 : MODIFY   -------------------")
 
 #-->TODO: Print your dictionary you created above
-
+print(new_dict)
 
 #-->TODO: Update the dictionary you just created  by adding new properties and values, including list elements, in this section.
-
+new_dict["list_1"] = [10,20,30]
 
 #-->TODO: Print your dictionary again and observe changes
-
+print(new_dict)
 
 print("------------------- CHALLENGE 3 : MEHTODS   -------------------")
 
 
 #-->TODO: Make a method that will update your dictionary value. It should take in a dictionary and return it modified.
-
+def add_edwin(dict):
+    dict = {x: "Edwin" for x in dict}
+    dict['Edwin'] = "is in your dictionary :)"
+    return dict
 
 #-->TODO: Call the method.
 
+print(add_edwin(new_dict))
 
 
 print("------------------- CHALLENGE 4 : LITERALLY   -------------------")
 
 #-->TODO: Put it all together using a string literal to tell the story of your dictionary!
+story = {
+        "Once": "upon",
+        "a":"time",
+        "there":"was a unicorn",
+
+}
+
+def stringlit(dict):
+    story = ""
+    for x,y in dict.items():
+        story += str(x) + ","
+        story += str(y) + ","
+    return story
+
+print(stringlit(story))
