@@ -1,4 +1,5 @@
 from colorsys import yiq_to_rgb
+from random import randint
 from threading import local
 import time
 import os
@@ -11,8 +12,14 @@ import numpy as np
 import copy
 import sys
 
+#TODO 
+#Person class @param -> name
+#User class inherits person class and has its own location
+#Enemy class inherits person class 
+#Map class (can make instance of the class)
+#game function runs the game
+#
 
-MOBS_KILLED = 0
 
 
 def print_Title():
@@ -49,14 +56,8 @@ class Person():
         self.name = name
     def get_name(self):
         return self.name
-    def is_alive(self, health):
-        if health <= 0:
-            return False
-        return True
 
 class User(Person):
-    #health for user is automatically 100
-    health = 100
     #position of the user
     def __init__(self, name, user_location_X=1,user_location_Y=1):
         self.user_location_X = user_location_X
@@ -80,62 +81,60 @@ class User(Person):
     def set_user_location_Y(self, y):
         self.user_location_Y = y
 
+# class Enemy(Person):
+#    enemies = {
+#         "Devil child": 50,
+#         "Corrupted Human": 100,
+#         "Goliath": 150,
+#         "Tree person": 200,
+#         "Golem": 250
+#     }
+#     def __init__(self, name, health, attack, attack_damage):
+#         super().__init__(name)
+#         self.health = health
+#         self.attack = attack
+#         self.attack_damage = attack_damage
     
-class Enemy(Person):
-   # enemies = {
-        # "Devil child": 50,
-        #"Corrupted Human": 100,
-        #"Goliath": 150,
-        # "Tree person": 200,
-        #"Golem": 250
-    #}
-    def __init__(self, name, health, attack, attack_damage):
-        super().__init__(name)
-        self.health = health
-        self.attack = attack
-        self.attack_damage = attack_damage
-    
-    def get_health(self):
-        return self.health
-    def get_attack(self):
-        return self.attack
-    def get_attack_damage(self):
-        return self.attack_damage
+#     def get_health(self):
+#         return self.health
+#     def get_attack(self):
+#         return self.attack
+#     def get_attack_damage(self):
+#         return self.attack_damage
 
 
-# make an object so you can have different rooms like bathroom, gym, etc def __init__(room) self.room = room
+
+
 class Map():
     global map
     map = [["|   |" for  a in range(3)]for b in range(3)]
     def __init__(self, room):
         self.room = room
-
     def print_map(self):
 
         for i in map:
             print("----- ----- -----")
             print(" ".join(i))
             print("----- ----- -----")
-    def get_map():
+            
+    def get_map(self):
         return map
     def set_map(self,x,y, value):
         map[x][y] = value
 #map will be a list of map objects 
 def game():
-    #dictionary for dialogue
-    devil_child = Enemy("Devil Child", 50, "Curse", 15)
-    corrupted_human = Enemy("Corrupted Human", 100, "Punch", 30)
-    goliath = Enemy("Goliath", 150, "Destroy", 150)
-    tree_person = Enemy("Tree person", 200, "Root grab", 10)
-    golem = Enemy("Golem", 250, "Rock throw", 10)
+    # devil_child = Enemy("Devil Child", 50, "Curse", 15)
+    # corrupted_human = Enemy("Corrupted Human", 100, "Punch", 30)
+    # goliath = Enemy("Goliath", 150, "Destroy", 150)
+    # tree_person = Enemy("Tree person", 200, "Root grab", 10)
+    # golem = Enemy("Golem", 250, "Rock throw", 10)
 
-    enemies = [ devil_child,
-                corrupted_human,
-                goliath,
-                tree_person,
-                golem
-    ]
-
+    # enemies = [ devil_child,
+    #             corrupted_human,
+    #             goliath,
+    #             tree_person,
+    #             golem
+    # ]
     username = input("Enter your name: ")
     user = User(username)
     
@@ -157,6 +156,9 @@ def game():
     idx_y = 1
     current_room = rooms[idx_x][idx_y]
     current_room.set_map(user.get_user_location_X(),user.get_user_location_Y(),'| X |')
+
+
+
     while True:
         time.sleep(2)
         os.system('clear')
@@ -174,35 +176,43 @@ def game():
 
         if move.lower() == "w":
             #change maps
-            if user_x == 0:
-                if not idx_x-1 < 0  and rooms[idx_x-1][idx_y] != None:
+            try:
+                rooms[idx_x][idx_y]
+                if user_x == 0:
+                    if not idx_x-1 < 0  and rooms[idx_x-1][idx_y] != None:
+                        current_room.set_map(user_x,user_y,'|   |')
+                        idx_x -=1
+                        current_room = rooms[idx_x][idx_y]
+                        user_x = 2
+                        user.set_user_location_X(user_x)
+                        current_room.set_map(user_x,user_y,'| X |')
+                    else: print("There's a force field blocking you!")
+                else:
                     current_room.set_map(user_x,user_y,'|   |')
-                    idx_x -=1
-                    current_room = rooms[idx_x][idx_y]
-                    user_x = 2
+                    user_x-=1
                     user.set_user_location_X(user_x)
                     current_room.set_map(user_x,user_y,'| X |')
-                else: print("There's a force field blocking you!")
+
+            except IndexError:
+                print("Cannot go here!")
 
 
-
-            else:
-                current_room.set_map(user_x,user_y,'|   |')
-                user_x-=1
-                user.set_user_location_X(user_x)
-                current_room.set_map(user_x,user_y,'| X |')
 
         elif move.lower() == "a":
             if (user_x == 0 or user_x == 1 or user_x == 2) and user_y == 0:
-                if rooms[idx_x][idx_y-1] == None:
-                    print("A giant rock is standing in your way!")
-                else:
-                    current_room.set_map(user_x,user_y,'|   |')
-                    idx_y -=1
-                    current_room = rooms[idx_x][idx_y]
-                    user_y = 2
-                    user.set_user_location_Y(user_y)
-                    current_room.set_map(user_x,user_y,'| X |')
+                try:
+                    rooms[idx_x][idx_y-1]
+                    if rooms[idx_x][idx_y-1] == None:
+                        print("A giant rock is standing in your way!")
+                    else:
+                        current_room.set_map(user_x,user_y,'|   |')
+                        idx_y -=1
+                        current_room = rooms[idx_x][idx_y]
+                        user_y = 2
+                        user.set_user_location_Y(user_y)
+                        current_room.set_map(user_x,user_y,'| X |')
+                except IndexError:
+                    print("Cannot go here!")
             else:
                 current_room.set_map(user_x,user_y,'|   |')
                 user_y -= 1
@@ -211,16 +221,24 @@ def game():
 
         elif move.lower() == "s":
             if user_x == 2:
+                if current_room == cavern_lower_path_room and user_y == 1:
+                    print("You found the exit!")
+                    exit()
+                try: 
+                    rooms[idx_x+1][idx_y]
 
-                if rooms[idx_x+1][idx_y] == None:
-                    print("I wouldn't go there if I were you...")
-                else:
-                    current_room.set_map(user_x,user_y,'|   |')
-                    idx_x +=1
-                    current_room = rooms[idx_x][idx_y]
-                    user_x = 0
-                    user.set_user_location_X(user_x)
-                    current_room.set_map(user_x,user_y,'| X |')
+
+                    if rooms[idx_x+1][idx_y] == None:
+                        print("I wouldn't go there if I were you...")
+                    else:
+                        current_room.set_map(user_x,user_y,'|   |')
+                        idx_x +=1
+                        current_room = rooms[idx_x][idx_y]
+                        user_x = 0
+                        user.set_user_location_X(user_x)
+                        current_room.set_map(user_x,user_y,'| X |')
+                except IndexError:
+                    print("Cannot go here!")
             else:
 
                 current_room.set_map(user_x,user_y,'|   |')
@@ -228,17 +246,22 @@ def game():
                 user.set_user_location_X(user_x)
                 current_room.set_map(user_x,user_y,'| X |')
 
+
         elif move.lower() == "d":
             if user_y == 2:
-                if rooms[idx_x][idx_y+1] == None:
-                    print("Watch out, you almost fell to your death!")
-                else:
-                    current_room.set_map(user_x,user_y,'|   |')
-                    idx_y += 1
-                    current_room = rooms[idx_x][idx_y]
-                    user_y = 0
-                    user.set_user_location_Y(user_y)
-                    current_room.set_map(user_x,user_y,'| X |')
+                try:
+                    rooms[idx_x][idx_y+1]   
+                    if rooms[idx_x][idx_y+1] == None:
+                        print("Watch out, you almost fell to your death!")
+                    else:
+                        current_room.set_map(user_x,user_y,'|   |')
+                        idx_y += 1
+                        current_room = rooms[idx_x][idx_y]
+                        user_y = 0
+                        user.set_user_location_Y(user_y)
+                        current_room.set_map(user_x,user_y,'| X |')
+                except IndexError:
+                    print("Cannot go here!")
             else:      
                 current_room.set_map(user_x,user_y,'|   |')
                 user_y+=1
@@ -248,11 +271,11 @@ def game():
 
 
 def main():
-    #print_Title()
+    print_Title()
     start_game = input("\nWould you like to continue? (Y)es or (N)o: ")
     if start_game == 'y':
-        print("Starting game")
-        #bar_loop()
+        print("Starting game...")
+        bar_loop()
     elif start_game == 'n':
         exit()
     time.sleep(2)
