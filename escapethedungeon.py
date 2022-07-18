@@ -229,10 +229,21 @@ def game():
                 current_room.set_map(user_x,user_y,'| X |')
 
         elif move.lower() == "d":
-            current_room.set_map(user_x,user_y,'|   |')
-            user_y+=1
-            user.set_user_location_Y(user_y)
-            current_room.set_map(user_x,user_y,'| X |')
+            if user_y == 2:
+                if rooms[idx_x][idx_y+1] == None:
+                    print("Watch out, you almost fell to your death!")
+                else:
+                    current_room.set_map(user_x,user_y,'|   |')
+                    idx_y += 1
+                    current_room = rooms[idx_x][idx_y]
+                    user_y = 0
+                    user.set_user_location_Y(user_y)
+                    current_room.set_map(user_x,user_y,'| X |')
+            else:      
+                current_room.set_map(user_x,user_y,'|   |')
+                user_y+=1
+                user.set_user_location_Y(user_y)
+                current_room.set_map(user_x,user_y,'| X |')
 
 
 
